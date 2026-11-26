@@ -72,8 +72,10 @@ td.num, th.num { text-align: right; }
 .sub { color: var(--muted); font-size: 13px; }
 .pos { color: var(--accent); } .neg { color: var(--red); }
 .implied { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
-.bar { width: 64px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; flex: none; }
+.barwrap { position: relative; width: 64px; flex: none; }
+.bar { width: 100%; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
 .bar i { display: block; height: 100%; background: var(--accent); }
+.whisker { position: absolute; left: 0; bottom: -4px; height: 2px; background: var(--amber); border-radius: 1px; }
 .status { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
 .status.live { background: var(--amber-soft); color: var(--amber); }
 .verdict { font-size: 12px; font-weight: 650; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
@@ -96,6 +98,11 @@ td.num, th.num { text-align: right; }
 .model ul { margin: 0 0 12px; padding-left: 20px; }
 .model li { margin-bottom: 4px; max-width: 760px; }
 .model li b { font-weight: 650; }
+.model h3 { margin: 20px 0 8px; font-size: 15px; }
+.model table.mini { width: auto; max-width: 100%; margin: 0 0 12px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.model table.mini th, .model table.mini td { padding: 6px 10px; font-size: 13px; border-bottom: 1px solid var(--line); }
+.model table.mini thead th { position: static; background: var(--paper); }
+.model table.mini tbody tr:last-child td { border-bottom: 0; }
 .note { font-size: 13px; color: var(--muted); }
 
 /* Detail dialog */
@@ -110,10 +117,10 @@ dialog.detail::backdrop { background: rgba(22, 21, 19, 0.45); }
 .detail-section { padding: 16px 24px; border-top: 1px solid var(--line); }
 .detail-section:first-of-type { border-top: 0; }
 .detail-section h3 { margin: 0 0 12px; font-size: 15px; }
-.equation { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
-.equation div { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; border-bottom: 1px solid var(--line); }
-.equation span { color: var(--muted); font-size: 13px; }
-.equation b { font-variant-numeric: tabular-nums; }
+.equation { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 24px; }
+.equation div { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; border-bottom: 1px solid var(--line); align-items: flex-start; }
+.equation span { color: var(--muted); font-size: 13px; flex: none; }
+.equation b { font-variant-numeric: tabular-nums; overflow-wrap: break-word; min-width: 0; text-align: right; }
 .equation .total { grid-column: 1 / -1; }
 .equation .total b { font-size: 20px; }
 ol.steps { margin: 0; padding-left: 20px; }
